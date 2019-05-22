@@ -1,0 +1,33 @@
+﻿@model ItemListViewModel
+
+
+@foreach(var m in Model.Courses)
+{
+    <div class="card card-outline-primary m-1 p-1">
+        <div class="p-1">
+            <img src="" class="card-img-top" />
+            <div class="card-body">
+                <h5 class="card-title">@m.Name</h5>
+                <p class="card-text">@m.Details</p>
+                <a href=# class="btn btn-primary">Enroll</a>
+                <a class="btn btn-primary" 
+                    asp-action="Details" asp-controller="Course" asp-route-id="@m.CourseId">
+                    Details</a>
+                <a class="btn btn-primary"
+                   asp-action="Edit" asp-controller="Course" asp-route-id="@m.CourseId">
+                    Edit for Admins</a>
+                <form asp-action="Delete" asp-controller="Course" asp-route-id="@m.CourseId" 
+                    method="post" class="p-1">
+                    <button type="submit" class="btn btn-danger">Delete for Admins</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+        
+}
+
+<div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true"
+    page-class="btn" page-class-normal="btn-secondary"
+    page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory" class="btn-group pull-right m-1">
+</div>

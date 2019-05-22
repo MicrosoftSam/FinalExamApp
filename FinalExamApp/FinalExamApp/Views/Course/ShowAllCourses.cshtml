@@ -1,0 +1,24 @@
+﻿@model ItemListViewModel
+
+@foreach (var m in Model.Courses)
+{
+    <div class="card card-outline-primary m-1 p-1">
+        <div class="p-1">
+            <img src="" class="card-img-top" />
+            <div class="card-body">
+                <h5 class="card-title">@m.Name</h5>
+                <p class="card-text">@m.Details</p>
+                <a href=# class="btn btn-primary">Enroll</a>
+                <a href="#" class="btn btn-primary">Details</a>
+                <a href="#" class="btn btn-primary">Edit for Admins</a>
+            </div>
+
+        </div>
+    </div>
+
+}
+
+<div page-model="@Model.PagingInfo" page-action="ShowAllCourses" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-secondary"
+     page-class-selected="btn-primary" class="btn-group pull-right m-1">
+</div>

@@ -1,0 +1,28 @@
+﻿@model News
+
+<form asp-action="EditNews" asp-controller="Home"
+      method="post" class="form-group">
+    <div class="form-group">
+        <input type="hidden" asp-for="@Model.NewsId" />
+        <div class="form-group">
+            <label asp-for="@Model.NewsName">News name</label>
+            <div class="col">
+                <input asp-for="@Model.NewsName" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.MyNews">News</label>
+            <div class="col">
+                <textarea class="form-control" rows="5" asp-for="@Model.MyNews"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col">
+                <p style="color:navy">@DateTime.Now.ToString()</p>
+                <input type="hidden" asp-for="@Model.NewsDate" value="@DateTime.Now" />
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Edit News</button>
+</form>
+

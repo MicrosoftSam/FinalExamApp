@@ -1,0 +1,27 @@
+﻿@model IEnumerable<News>
+
+<h5>Welcome to my Final Exam and portfolio App</h5>
+
+<a asp-action="AddNews" asp-controller="Home" class="btn btn-primary">
+    Add News
+</a>
+
+
+@foreach(var m in Model)
+{
+    <div class="card m-1 p-1">
+        @if(m.NewsId == 1)
+        {
+            <h5 class="card-header">Featured</h5>
+        }
+            <div class="card-body">
+                <h5 class="card-title">@m.NewsDate</h5>
+                <hr />
+                <p class="card-text">@m.MyNews</p>
+                <a asp-action="EditNews" asp-controller="Home" class="btn btn-primary"
+                    asp-route-id="@m.NewsId">
+                    Edit News
+                </a>
+            </div>
+    </div>
+}

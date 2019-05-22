@@ -1,0 +1,41 @@
+﻿@model Course
+
+<div class="form-group ">
+    <div class="p-1">
+        <div class="card m-1 p-1">
+            <div class="card-body">
+                <div class="card-title" style="color:darkred">
+                    <h5>Name of the course</h5>
+                </div>
+                <h6 class="card-text" style="color:darkslategray">@Model.Name</h6>
+            </div>
+        </div>
+        <div class="card m-1 p-1">
+            <div class="card-body">
+                <div class="card-title" style="color:darkred">
+                    <h5>Details about the course</h5>
+                </div>
+                <h6 class="card-text" style="color:darkslategray">@Model.Details</h6>
+            </div>
+        </div>
+        <div class="card m-1 p-1">
+            <div class="card-body">
+                <div class="card-title" style="color:darkred">
+                    <h5>Date and time when the course starts</h5>
+                </div>
+                <h6 class="card-text" style="color:darkslategray">@Model.CourseStartDate</h6>
+            </div>
+        </div>
+        <div class="card m-1 p-1">
+            <div class="card-body">
+                <div class="card-title" style="color:darkred">
+                    <h5>Course category</h5>
+                </div>
+                <h6 class="card-text" style="color:darkslategray">@Model.Category</h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a class="btn btn-primary m-1 p-1"
+   asp-action="Index" asp-controller="Course">Back</a>

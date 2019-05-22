@@ -1,0 +1,46 @@
+﻿@model Course
+
+<form asp-action="Create" asp-controller="Course"
+    method="post" class="form-group">
+    <div class="form-group">
+        <input type="hidden" name="returnUrl"
+               value="@ViewContext.HttpContext.Request.Path" />
+        <div class="form-group">
+            <label asp-for="@Model.Name">Course Name</label>
+            <div class="col">
+                <input asp-for="@Model.Name" class="form-control" />
+            </div>   
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Details">Course Details</label>
+            <div class="col">
+                <input asp-for="@Model.Details" class="form-control" />
+            </div>     
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.CourseStartDate">Course Date</label>
+            <div class="col">
+                <input asp-for="@Model.CourseStartDate" class="form-control" />
+            </div>           
+        </div>
+        <div class="form-group">
+            <div>
+                <label asp-for="@Model.Full">Is course full?</label> 
+            </div>
+            <div class="col">
+                <select asp-for="@Model.Full" class="form-control">
+                    <option value="True">Course Is Full</option>
+                    <option value="False">Course Is Not Full</option>
+                </select>
+            </div>     
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Category">Course Category</label>
+            <div class="col">
+                <input asp-for="@Model.Category" class="form-control" />
+            </div>         
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
