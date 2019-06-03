@@ -1,0 +1,43 @@
+﻿@model CourseSignUp
+
+<h4>You are signing up for: @ViewBag.CourseName course</h4>
+
+<form asp-action="SignUp" asp-controller="CourseSignUp"
+    method="post" class="form-group">
+    <div class="form-group">
+        <div class="form-group">
+            <label asp-for="@Model.FirstName">First Name</label>
+            <div class="col">
+                <input asp-for="@Model.FirstName" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.LastName">Last Name</label>
+            <div class="col">
+                <input asp-for="@Model.LastName" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Address">Address</label>
+            <div class="col">
+                <input asp-for="@Model.Address" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.TelephoneNumber">Telephone Number</label>
+            <div class="col">
+                <input asp-for="@Model.TelephoneNumber" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Status">Is Accepted?</label>
+            <div class="col">
+                <select asp-for="@Model.Status" class="form-control">
+                    <option value="True">Accepted</option>
+                    <option value="False">Not Accepted</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

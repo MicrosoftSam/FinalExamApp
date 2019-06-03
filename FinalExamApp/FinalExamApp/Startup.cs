@@ -30,6 +30,7 @@ namespace FinalExamApp
                 Configuration["Data:FinalExamRepo:ConnectionString"]));
             services.AddTransient<ICourseRepository, EFRepository>();
             services.AddTransient<INewsRepository, EFNewsRepository>();
+            services.AddTransient<ICourseSignUp, EFSignUpRepository>();
 
             services.AddMvc();
         }

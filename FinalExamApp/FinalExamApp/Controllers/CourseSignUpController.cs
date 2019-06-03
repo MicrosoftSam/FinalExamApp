@@ -11,10 +11,15 @@ namespace FinalExamApp.Controllers
     public class CourseSignUpController : Controller
     {
         private ICourseSignUp _repository;
+        private ICourseRepository _coursesRepository;
         public int PageSize = 4;
 
-        public CourseSignUpController(ICourseSignUp repo) =>
+        public CourseSignUpController(ICourseSignUp repo,
+            ICourseRepository courseRepo)
+        {
             _repository = repo;
+            _coursesRepository = courseRepo;
+        }
 
         public ViewResult Index(int courseSignUpPage = 1)
         {
@@ -31,6 +36,31 @@ namespace FinalExamApp.Controllers
                     TotalItems = _repository.CourseSignUps.Count()
                 }
             });
+        }
+
+        [HttpGet]
+        public ViewResult SignUp(int id)
+        {
+            Course course = _coursesRepository.Courses.Where(
+                s => s.CourseId == id).FirstOrDefault();
+
+            ViewBag.CourseName = course.Name;
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SignUp(CourseSignUp signUp, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                _repository.SaveSignUp(signUp, id);
+                return RedirectToAction("Index", "Course");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

@@ -9,7 +9,9 @@
             <div class="card-body">
                 <h5 class="card-title">@m.Name</h5>
                 <p class="card-text">@m.Details</p>
-                <a href=# class="btn btn-primary">Enroll</a>
+                <a class="btn btn-primary"
+                   asp-action="SignUp" asp-controller="CourseSignUp" 
+                    asp-route-id="@m.CourseId">Enroll</a>
                 <a class="btn btn-primary" 
                     asp-action="Details" asp-controller="Course" asp-route-id="@m.CourseId">
                     Details</a>

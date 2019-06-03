@@ -8,5 +8,6 @@ namespace FinalExamApp.Models
     public interface ICourseSignUp
     {
         IQueryable<CourseSignUp> CourseSignUps { get; }
+        void SaveSignUp(CourseSignUp signUp, int id);
     }
 }
