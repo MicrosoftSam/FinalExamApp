@@ -1,5 +1,9 @@
 ﻿@model ItemListViewModel
 
+<div>
+    <h3>See the list of all courses we offer</h3>
+</div>
+
 @foreach (var m in Model.Courses)
 {
     <div class="card card-outline-primary m-1 p-1">
@@ -8,9 +12,16 @@
             <div class="card-body">
                 <h5 class="card-title">@m.Name</h5>
                 <p class="card-text">@m.Details</p>
-                <a href=# class="btn btn-primary">Enroll</a>
-                <a href="#" class="btn btn-primary">Details</a>
-                <a href="#" class="btn btn-primary">Edit for Admins</a>
+                <a asp-action="SignUp" asp-controller="CourseSignUp"
+                   asp-route-id="@m.CourseId" class="btn btn-primary">Enroll</a>
+                <a asp-action="Details" asp-route-id="@m.CourseId" class="btn btn-primary">Details</a>
+                <a asp-action="Edit" asp-route-id="@m.CourseId" class="btn btn-primary">Edit for Admins</a>
+                <a class="btn btn-primary" asp-action="Index"
+                   asp-controller="CourseSignUp" asp-route-id="@m.CourseId">Check signups for this course</a>
+                <form asp-action="Delete" asp-controller="Course" asp-route-id="@m.CourseId"
+                      method="post" class="p-1">
+                    <button type="submit" class="btn btn-danger">Delete for Admins</button>
+                </form>
             </div>
 
         </div>

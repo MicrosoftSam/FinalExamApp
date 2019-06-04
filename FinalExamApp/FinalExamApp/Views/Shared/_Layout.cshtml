@@ -4,12 +4,23 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet"
-          asp-href-include="lib/bootstrap/dist/**/*.min.css" />
+          asp-href-include="lib/bootstrap/dist/css/bootstrap.css" />
     <title>FinalExamApp</title>
 </head>
 <body>
     <div class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
-        <a class="navbar-brand" href="#">FinalExamApp</a>
+        <a asp-action="Index" asp-controller="Home" class="navbar-brand">FinalExamApp</a>
+        <div class="nav-item dropdown">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton">
+                Admin Panel
+            </button>
+            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
+                <a asp-action="Create" asp-controller="Course"
+                   class="dropdown-item">Add Course</a>
+            </div>
+        </div>
+
     </div>
     <div class="row m-1 p-1">
         <div id="categories" class="col-3">
@@ -17,12 +28,11 @@
         </div>
         <div class="col-9">
             @RenderBody()
+            <footer class="blockquote-footer">
+                <p>2019 - FinalExamApp</p>
+            </footer>
         </div>
     </div>
-    <div class="fixed-bottom bg-dark">
-        <footer>
-            <p style="color:white">@DateTime.Now.Year - FinalExamApp</p>
-        </footer>
-    </div>
+    
 </body>
 </html>

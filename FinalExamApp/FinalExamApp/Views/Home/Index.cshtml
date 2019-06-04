@@ -15,13 +15,17 @@
             <h5 class="card-header">Featured</h5>
         }
             <div class="card-body">
-                <h5 class="card-title">@m.NewsDate</h5>
+                <h6 class="card-title">@m.NewsDate</h6>
                 <hr />
                 <p class="card-text">@m.MyNews</p>
                 <a asp-action="EditNews" asp-controller="Home" class="btn btn-primary"
                     asp-route-id="@m.NewsId">
                     Edit News
                 </a>
+                <form asp-action="DeleteNews" asp-controller="Home" asp-route-id="@m.NewsId"
+                      method="post" class="p-1">
+                    <button type="submit" class="btn btn-danger">Delete for Admins</button>
+                </form>
             </div>
     </div>
 }

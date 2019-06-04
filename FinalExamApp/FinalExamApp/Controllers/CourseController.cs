@@ -43,26 +43,54 @@ namespace FinalExamApp.Controllers
         {
             int courseCount = 0;
 
-            foreach(var n in _repository.Courses.Where(c =>
-            c.Name.Contains(searchString)))
+            if(searchString != null)
             {
-                courseCount += 1;
-            }
-
-            return View(new ItemListViewModel {
-                Courses = _repository.Courses
-                .OrderBy(c => c.Name)
-                .Skip((coursePage - 1) * PageSize)
-                .Take(PageSize),
-                PagingInfo = new PagingInfo
+                foreach (var n in _repository.Courses.Where(c =>
+                    c.Name.Contains(searchString)))
                 {
-                    CurrentPage = coursePage,
-                    ItemsPerPage = PageSize,
-                    TotalItems = searchString == null ?
+                    courseCount += 1;
+                }
+                return View(new ItemListViewModel
+                {
+                    Courses = _repository.Courses.Where(c =>
+                    c.Name.Contains(searchString))
+                    .OrderBy(c => c.Name)
+                    .Skip((coursePage - 1) * PageSize)
+                    .Take(PageSize),
+                    PagingInfo = new PagingInfo
+                    {
+                        CurrentPage = coursePage,
+                        ItemsPerPage = PageSize,
+                        TotalItems = searchString == null ?
                         _repository.Courses.Count() :
                         courseCount
+                    }
+                });
+            }
+            else
+            {
+                foreach(var n in _repository.Courses)
+                {
+                    courseCount += 1;
                 }
-            });
+
+                return View(new ItemListViewModel
+                {
+                    Courses = _repository.Courses
+                    .OrderBy(c => c.Name)
+                    .Skip((coursePage - 1) * PageSize)
+                    .Take(PageSize),
+                    PagingInfo = new PagingInfo
+                    {
+                        CurrentPage = coursePage,
+                        ItemsPerPage = PageSize,
+                        TotalItems = searchString == null ?
+                        _repository.Courses.Count() :
+                        courseCount
+                    }
+                });
+            }
+                 
         }
 
         public ViewResult Create()

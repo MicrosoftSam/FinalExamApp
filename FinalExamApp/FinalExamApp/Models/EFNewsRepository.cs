@@ -22,6 +22,19 @@ namespace FinalExamApp.Models
             _context.SaveChanges();
         }
 
+        public void DeleteNews(int id)
+        {
+            News dbEntry = _context.News.Where(n =>
+            n.NewsId == id).FirstOrDefault();
+
+            if(dbEntry != null)
+            {
+                _context.Remove(dbEntry);
+                _context.SaveChanges();
+            }
+            
+        }
+
         public void EditNews(News news)
         {
             News DbEntry = _context.News.Where(n =>

@@ -66,5 +66,12 @@ namespace FinalExamApp.Controllers
             }
 
         }
+
+        [HttpPost]
+        public IActionResult DeleteNews(int id)
+        {
+            _repository.DeleteNews(id);
+            return RedirectToAction("Index");
+        }
     }
 }

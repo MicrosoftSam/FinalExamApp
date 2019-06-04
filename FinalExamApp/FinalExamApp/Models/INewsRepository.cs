@@ -10,5 +10,6 @@ namespace FinalExamApp.Models
         IQueryable<News> QueryNews { get; }
         void AddNews(News news);
         void EditNews(News news);
+        void DeleteNews(int id);
     }
 }

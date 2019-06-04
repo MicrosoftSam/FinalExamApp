@@ -21,11 +21,12 @@ namespace FinalExamApp.Controllers
             _coursesRepository = courseRepo;
         }
 
-        public ViewResult Index(int courseSignUpPage = 1)
+        public ViewResult Index(int id, int courseSignUpPage = 1)
         {
             return View(new SignUpViewModel
             {
-                CourseSignUps = _repository.CourseSignUps
+                CourseSignUps = _repository.CourseSignUps.Where(
+                    c => c.CourseId == id)
                 .OrderBy(s => s.LastName)
                 .Skip((courseSignUpPage - 1) * PageSize)
                 .Take(PageSize),
@@ -62,5 +63,7 @@ namespace FinalExamApp.Controllers
                 return View();
             }
         }
+
+       
     }
 }
