@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FinalExamApp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinalExamApp.Controllers
 {
@@ -23,12 +24,14 @@ namespace FinalExamApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult AddNews()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult AddNews(News news)
         {
             if (ModelState.IsValid)
@@ -41,6 +44,7 @@ namespace FinalExamApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult EditNews(int id)
         {
 
@@ -53,6 +57,7 @@ namespace FinalExamApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult EditNews(News news)
         {
             if (ModelState.IsValid)
@@ -68,6 +73,7 @@ namespace FinalExamApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteNews(int id)
         {
             _repository.DeleteNews(id);

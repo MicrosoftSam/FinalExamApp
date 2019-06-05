@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using FinalExamApp.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace FinalExamApp
 {
@@ -28,6 +29,15 @@ namespace FinalExamApp
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(
                 Configuration["Data:FinalExamRepo:ConnectionString"]));
+
+            services.AddDbContext<AppIdentityDbContext>(options =>
+            options.UseSqlServer(
+                Configuration["Data:FinalExamIdentity:ConnectionString"]));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddTransient<ICourseRepository, EFRepository>();
             services.AddTransient<INewsRepository, EFNewsRepository>();
             services.AddTransient<ICourseSignUp, EFSignUpRepository>();
@@ -43,6 +53,7 @@ namespace FinalExamApp
                 app.UseDeveloperExceptionPage();
                 app.UseStatusCodePages();
                 app.UseStaticFiles();
+                app.UseAuthentication();
                 app.UseMvc(routes =>
                 {
                     routes.MapRoute(
@@ -85,6 +96,7 @@ namespace FinalExamApp
                 });
                 SeedData.EnsurePopulatedCourses(app);
                 SeedData.EnsurePopulatedCourseSignUps(app);
+                IdentitySeedData.EnsurePopulated(app);
             }
         }
     }

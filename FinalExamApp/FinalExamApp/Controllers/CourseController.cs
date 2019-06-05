@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using FinalExamApp.Models;
 using FinalExamApp.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinalExamApp.Controllers
 {
@@ -93,12 +94,15 @@ namespace FinalExamApp.Controllers
                  
         }
 
+        [HttpGet]
+        [Authorize(Roles ="Admin, Employee")]
         public ViewResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Employee")]
         public ActionResult Create(Course newCourse)
         {
             if (ModelState.IsValid)
@@ -111,6 +115,7 @@ namespace FinalExamApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Employee")]
         public ViewResult Edit(int id)
         {
             var course = _repository.Courses.Where(c =>
@@ -120,6 +125,7 @@ namespace FinalExamApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Employee")]
         public IActionResult Edit(Course course)
         {
             if (ModelState.IsValid)
@@ -132,6 +138,7 @@ namespace FinalExamApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Employee")]
         public IActionResult Delete(int id)
         {
             _repository.DeleteCourse(id);
