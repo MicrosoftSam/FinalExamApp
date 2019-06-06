@@ -5,20 +5,37 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet"
           asp-href-include="lib/bootstrap/dist/css/bootstrap.css" />
+    <link href="~/lib/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
     <title>FinalExamApp</title>
 </head>
+
 <body>
     <div class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
         <a asp-action="Index" asp-controller="Home" class="navbar-brand">FinalExamApp</a>
-        <div class="nav-item dropdown">
-            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton">
-                Admin Panel
-            </button>
-            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
-                <a asp-action="Create" asp-controller="Course"
-                   class="dropdown-item">Add Course</a>
-            </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item dropdown">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton">
+                        Admin Panel
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
+                        <a asp-action="Create" asp-controller="Course"
+                           class="dropdown-item">Add Course</a>
+                    </div>
+                </li>
+            </ul>
+            <span>
+                <a asp-action="Login" asp-controller="Account" class="btn">
+                    <i class="fas fa-sign-in-alt" style="color:#ffffff">LogIn</i>
+                </a>
+            </span>
+            <span>
+                <a asp-action="Logout" asp-controller="Account" class="btn">
+                    <i class="fas fa-sign-out-alt" style="color:#ffffff">LogOut</i>
+                </a>
+            </span>
         </div>
 
     </div>
@@ -33,6 +50,6 @@
             </footer>
         </div>
     </div>
-    
+
 </body>
 </html>

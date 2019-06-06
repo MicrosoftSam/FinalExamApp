@@ -8,6 +8,7 @@ namespace FinalExamApp.Models.ViewModels
 {
     public class LoginModel
     {
+
         [Required]
         public string Name { get; set; }
 

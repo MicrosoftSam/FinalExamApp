@@ -25,6 +25,7 @@ namespace FinalExamApp.Controllers
         [AllowAnonymous]
         public ViewResult LogIn(string returnUrl)
         {
+            ViewData["ReturnUrl"] = returnUrl;
             return View(new LoginModel
             {
                 ReturnUrl = returnUrl
@@ -53,10 +54,25 @@ namespace FinalExamApp.Controllers
             ModelState.AddModelError("", "Invalid name or password");
             return View(loginModel);
         }
+
         public async Task<RedirectResult> Logout(string returnUrl = "/")
         {
             await signInManager.SignOutAsync();
             return Redirect(returnUrl);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> EditUser(string name)
+        {
+            IdentityUser user =
+                await userManager.FindByNameAsync(name);
+            if(user != null)
+            {
+                return View(user);
+            }
+
+            return View();
         }
     }
 }

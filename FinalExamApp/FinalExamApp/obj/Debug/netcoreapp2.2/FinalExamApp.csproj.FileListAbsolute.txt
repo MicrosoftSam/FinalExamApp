@@ -64,3 +64,5 @@ D:\C#\DotNetCoreFinishApp\FinalExamApp\FinalExamApp\obj\Debug\netcoreapp2.2\Razo
 D:\C#\DotNetCoreFinishApp\FinalExamApp\FinalExamApp\obj\Debug\netcoreapp2.2\Razor\Views\Home\AddNews.g.cshtml.cs
 D:\C#\DotNetCoreFinishApp\FinalExamApp\FinalExamApp\obj\Debug\netcoreapp2.2\Razor\Views\Home\EditNews.g.cshtml.cs
 D:\C#\DotNetCoreFinishApp\FinalExamApp\FinalExamApp\obj\Debug\netcoreapp2.2\Razor\Views\CourseSignUp\SignUp.g.cshtml.cs
+D:\C#\DotNetCoreFinishApp\FinalExamApp\FinalExamApp\obj\Debug\netcoreapp2.2\Razor\Views\Account\Login.g.cshtml.cs
+D:\C#\DotNetCoreFinishApp\FinalExamApp\FinalExamApp\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_AdminLayout.g.cshtml.cs
