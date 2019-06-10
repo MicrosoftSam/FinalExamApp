@@ -26,6 +26,16 @@
                     </div>
                 </li>
             </ul>
+            @if (User.Identity.IsAuthenticated){
+            <span>
+                <i style="color:white">Hello @User.Identity.Name!</i>
+            </span>
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-action="Index" asp-controller="Account">@User.Identity.Name</a>
+            }
+            }
+
             <span>
                 <a asp-action="Login" asp-controller="Account" class="btn">
                     <i class="fas fa-sign-in-alt" style="color:#ffffff">LogIn</i>

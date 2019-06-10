@@ -22,6 +22,15 @@ namespace FinalExamApp.Controllers
             signInManager = signInMngr;
         }
 
+        [HttpGet]
+        [Authorize(Roles="Admin")]
+        public ViewResult Index()
+        {
+            var users = userManager.Users.ToList();
+
+            return View(users);
+        }
+
         [AllowAnonymous]
         public ViewResult LogIn(string returnUrl)
         {
@@ -73,6 +82,20 @@ namespace FinalExamApp.Controllers
             }
 
             return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            IdentityUser user =
+                await userManager.FindByIdAsync(id);
+            if(user != null)
+            {
+                await userManager.DeleteAsync(user);
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }
