@@ -3,6 +3,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet"
           asp-href-include="lib/bootstrap/dist/css/bootstrap.css" />
     <link href="~/lib/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
@@ -14,38 +16,51 @@
     <div class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
         <a asp-action="Index" asp-controller="Home" class="navbar-brand">FinalExamApp</a>
         <div class="collapse navbar-collapse">
+        @if (User.Identity.IsAuthenticated)
+        {
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item dropdown">
                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton">
-                        Admin Panel
+                        Management Panel
                     </button>
                     <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
                         <a asp-action="Create" asp-controller="Course"
                            class="dropdown-item">Add Course</a>
+                        <a asp-action="AddNews" asp-controller="Home"
+                           class="dropdown-item">Add News</a>
                     </div>
                 </li>
             </ul>
-            @if (User.Identity.IsAuthenticated){
-            <span>
-                <i style="color:white">Hello @User.Identity.Name!</i>
-            </span>
-            @if (User.IsInRole("Admin"))
+        }
+     @if (User.Identity.IsAuthenticated)
             {
-                <a asp-action="Index" asp-controller="Account">@User.Identity.Name</a>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-action="Index" asp-controller="Account">Hello @User.Identity.Name</a>
+                }
+                else
+                {
+                    <span>
+                        <i style="color:white">Hello @User.Identity.Name!</i>
+                    </span>
+                }
+                <span>
+                    <a asp-action="Logout" asp-controller="Account" class="btn">
+                        <i class="fas fa-sign-out-alt" style="color:#ffffff">LogOut</i>
+                    </a>
+                </span>
             }
+            else
+            {
+                <span>
+                    <a asp-action="Login" asp-controller="Account" class="btn">
+                        <i class="fas fa-sign-in-alt" style="color:#ffffff">LogIn</i>
+                    </a>
+                </span>
             }
 
-            <span>
-                <a asp-action="Login" asp-controller="Account" class="btn">
-                    <i class="fas fa-sign-in-alt" style="color:#ffffff">LogIn</i>
-                </a>
-            </span>
-            <span>
-                <a asp-action="Logout" asp-controller="Account" class="btn">
-                    <i class="fas fa-sign-out-alt" style="color:#ffffff">LogOut</i>
-                </a>
-            </span>
         </div>
 
     </div>

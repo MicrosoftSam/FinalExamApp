@@ -21,22 +21,22 @@ namespace FinalExamApp.Models
             RoleManager<IdentityRole> roleManager = app.ApplicationServices
                 .GetRequiredService<RoleManager<IdentityRole>>();
 
-            IdentityUser user = await userManager.FindByIdAsync(adminUser);
-            if(user == null)
-            {
-                user = new IdentityUser("Admin");
-                IdentityResult chkUser = await userManager.CreateAsync(user, adminPassword);
-
-                if (chkUser.Succeeded)
-                {
-                    IdentityResult userResult = await userManager.AddToRoleAsync(user, "Admin");
-                }
-            }
-
-            if(!await roleManager.RoleExistsAsync("Admin"))
+            if (!await roleManager.RoleExistsAsync("Admin"))
             {
                 var role = new IdentityRole("Admin");
                 await roleManager.CreateAsync(role);
+
+                IdentityUser user = await userManager.FindByIdAsync(adminUser);
+                if (user == null)
+                {
+                    user = new IdentityUser("Admin");
+                    IdentityResult chkUser = await userManager.CreateAsync(user, adminPassword);
+
+                    if (chkUser.Succeeded)
+                    {
+                        IdentityResult userResult = await userManager.AddToRoleAsync(user, "Admin");
+                    }
+                }
             }
 
             if (!await roleManager.RoleExistsAsync("Employee"))

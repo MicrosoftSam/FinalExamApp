@@ -17,5 +17,7 @@ namespace FinalExamApp.Models.ViewModels
         public string Password { get; set; }
 
         public string ReturnUrl { get; set; } = "/";
+
+        public string Role { get; set; } = "User";
     }
 }
